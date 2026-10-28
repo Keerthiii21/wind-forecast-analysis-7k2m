@@ -13,7 +13,7 @@ import {
   Legend,
 } from 'recharts'
 
-const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'https://gridbricks-wind-api-c02a.onrender.com';
 
 type AnalysisRow = {
   startTime: string
