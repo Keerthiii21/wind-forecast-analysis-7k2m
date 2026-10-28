@@ -434,7 +434,7 @@ function App() {
                         type="monotone"
                         dataKey="forecast"
                         name="Forecast"
-                        stroke="#9dbf70"
+                        stroke="#6c9af2"
                         strokeWidth={2.5}
                         dot={false}
                         activeDot={{ r: 5 }}
@@ -444,7 +444,7 @@ function App() {
                         type="monotone"
                         dataKey="actual"
                         name="Actual"
-                        stroke="#234c3a"
+                        stroke="#21b8a6"
                         strokeWidth={2.5}
                         dot={false}
                         activeDot={{ r: 5 }}
