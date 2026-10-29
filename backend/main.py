@@ -7,30 +7,29 @@ import httpx
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(
-    title="Gridbricks Wind Intelligence API",
-    description="UK wind generation forecasts and accuracy analysis",
-    version="0.1.0",
-)
-
 import os
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "").rstrip("/")
 
-ALLOWED_ORIGINS = [
+origins = [
     "http://localhost:5173",
+    "http://localhost:8080",
+    "https://wind-forecast-analysis-7k2m-fronten.vercel.app",
 ]
 
-if FRONTEND_URL:
-    ALLOWED_ORIGINS.append(FRONTEND_URL.rstrip("/"))
+if FRONTEND_URL and FRONTEND_URL not in origins:
+    origins.append(FRONTEND_URL)
+
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=False,
-    allow_methods=["GET"],
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 BASE_URL = "https://data.elexon.co.uk/bmrs/api/v1"
 
